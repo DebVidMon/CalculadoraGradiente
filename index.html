@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<title>Calculadora</title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <style>
+      @font-face {
+        font-family: Ds-Digital;
+        src: url(assets/dsdigital/DS-DIGIB.TTF);
+      }
+      /* cores: #082050 sombra azul
+                #581820 sombra vermelha
+                #C02828 vermelho
+                #F8E818 amarelo
+                #083870 azul
+                #2E2E2E cinza 
+                
+        Fonte: Ds-Digital*/
+      .calculadora {
+        margin-top: 40px;
+        border: solid 1px #581820;
+        padding: 20px;
+        background-color: #C02828;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px #581820;
+      }
+
+      .btnnum {
+        width: 60px;
+        height: 50px;
+        margin: 5px;
+        color:white;
+        background-color: #083870;
+        border: solid 1px #082050;
+        box-shadow: 1px 1px 5px #082050;
+      }
+
+      .btnop {
+        width: 60px;
+        height: 50px;
+        margin: 5px;
+        color:black;
+        background-color: #F8E818;
+        border: solid 1px #B8A818;
+        box-shadow: 1px 1px 5px #B8A818;
+      }
+
+      .clear {
+        width: 130px;
+      }
+
+      .enter {
+        height: 110px;
+      }
+
+      .zero {
+        width: 130px;
+      }
+
+      #resultado {
+        text-align: right;
+        font-size: 25px;
+        font-family: Ds-Digital;
+        color: #000;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        background-color: #D9D9D9;
+        border: solid 1px lightslategray;
+        box-shadow: -1px -1px 3px lightslategray;
+      }
+
+    </style>
+	</head>
+
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <br />
+
+          <div class="calculadora">
+            <input id="resultado" type="text" class="form-control resultado" placeholder="0" disabled="disabled" />
+            
+            <div class="row justify-content-center">
+              <button onclick="calcular('op', 'c')" type="button" class="btn btnop btn-lg clear font-weight-bolder">C</button>
+              <button onclick="calcular('op', '/')" type="button" class="btn btnop btn-lg font-weight-bolder">/</button>
+              <button onclick="calcular('op', '*')" type="button" class="btn btnop btn-lg font-weight-bolder">x</button>
+            </div>
+
+            <div class="row justify-content-center">
+              <button onclick="calcular('num', 7)" type="button" class="btn btnnum btn-lg font-weight-bolder">7</button>
+              <button onclick="calcular('num', 8)" type="button" class="btn btnnum btn-lg font-weight-bolder">8</button>
+              <button onclick="calcular('num', 9)" type="button" class="btn btnnum btn-lg font-weight-bolder">9</button>
+              <button onclick="calcular('op', '-')" type="button" class="btn btnop btn-lg font-weight-bolder">-</button>
+            </div>
+            
+            <div class="row justify-content-center">
+              <button onclick="calcular('num', 4)" type="button" class="btn btnnum btn-lg font-weight-bolder">4</button>
+              <button onclick="calcular('num', 5)" type="button" class="btn btnnum btn-lg font-weight-bolder">5</button>
+              <button onclick="calcular('num', 6)" type="button" class="btn btnnum btn-lg font-weight-bolder">6</button>
+              <button onclick="calcular('op', '+')" type="button" class="btn btnop btn-lg font-weight-bolder">+</button>
+            </div>
+
+            <div class="row justify-content-center">
+              <button onclick="calcular('num', 1)" type="button" class="btn btnnum btn-lg font-weight-bolder">1</button>
+              <button onclick="calcular('num', 2)" type="button" class="btn btnnum btn-lg font-weight-bolder">2</button>
+              <button onclick="calcular('num', 3)" type="button" class="btn btnnum btn-lg font-weight-bolder">3</button>
+              <button onclick="calcular('op', '=')" type="button" class="btn btnop btn-lg enter">=</button>
+            </div>
+
+            <div class="row" style="margin-top: -60px; margin-left: -5px;">
+              <button onclick="calcular('num', 0)" type="button" class="btn btnnum zero btn-lg font-weight-bolder">0</button>
+              <button onclick="calcular('op', '.')" type="button" class="btn btnnum btn-lg font-weight-bolder">,</button>
+            </div>
+
+            <div class="row justify-content-center">
+              <img class="mt-3" src="assets/gradiente.png" alt="logo gradiente" width="100px">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <script>
+      function calcular(tipo,valor) {
+        
+        if (tipo === 'op') {
+          if (valor === 'c') {
+            //limpar visor (id resultado)
+            document.getElementById('resultado').value = ''
+          }
+
+          if (valor === '+' || valor === '-' || valor === '*' || valor === '/' || valor === '.') {
+            document.getElementById('resultado').value += valor
+          }
+
+          if (valor === '=') {
+            var valor_campo = eval(document.getElementById('resultado').value)
+            
+            document.getElementById('resultado').value = valor_campo
+          }
+
+        } else if (tipo === 'num') {
+          document.getElementById('resultado').value += valor
+        }
+      }
+    </script>
+  </body>	
+
+</html>
